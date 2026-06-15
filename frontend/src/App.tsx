@@ -1,18 +1,11 @@
-import { Button } from "./components/ui/button"
-import { appName } from "./test"
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-
   return (
-    <div className='min-h-screen flex items-center justify-center'>
-      <h1 className='text-5xl font-bold'>
-        {appName}
-      </h1>
-      <Button>
-        Make My Trip
-      </Button>
+    <div>
+      <AppRoutes />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

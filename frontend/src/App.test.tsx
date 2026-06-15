@@ -1,10 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 
-describe("App Component", () => {
-  test("renderes plan my trip button", () => {
-    render(<App />);
-
-    expect(screen.getByRole("button")).toBeInTheDocument();
+describe("App", () => {
+  test("renders without crashing", () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
   });
 });
