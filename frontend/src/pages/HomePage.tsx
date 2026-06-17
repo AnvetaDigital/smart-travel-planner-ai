@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Map, MessageCircle, CloudSun } from "lucide-react";
 import travelImage from "@/assets/images/plane2.jpg";
 import FlyingPlane from "@/components/animations/FlyingPlane";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 const features = [
   {
@@ -25,6 +27,8 @@ const features = [
 ];
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
   return (
     <div>
       {/* Hero Section */}
@@ -51,11 +55,23 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button size="lg" className="px-8">
+              <Button
+                size="lg"
+                className="px-8"
+                onClick={() => navigate(ROUTES.CREATE_TRIP)}
+              >
                 Start Planning
               </Button>
 
-              <Button variant="secondary" size="lg">
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={() =>
+                  document.getElementById("features")?.scrollIntoView({
+                    behavior: "smooth",
+                  })
+                }
+              >
                 Explore Features
               </Button>
             </div>
@@ -63,7 +79,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* Features Section */}
-      <section className="bg-slate-300 py-28">
+      <section id="features" className="bg-slate-300 py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="text-3xl font-bold sm:text-4xl">
@@ -103,7 +119,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="bg-sky-100 py-24">
+      <section className="bg-sky-100 py-5">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">
             Ready To Plan Your Next Adventure?
@@ -113,7 +129,11 @@ export default function HomePage() {
             Create personalized travel experiences in minutes.
           </p>
 
-          <Button size="lg" className="mt-8 px-8">
+          <Button
+            size="lg"
+            className="mt-8 px-8"
+            onClick={() => navigate(ROUTES.CREATE_TRIP)}
+          >
             Start Planning Today
           </Button>
         </div>
