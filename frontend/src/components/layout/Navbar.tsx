@@ -8,6 +8,9 @@ const navItems = [
   { label: "Home", path: ROUTES.HOME },
   { label: "Login", path: ROUTES.LOGIN },
   { label: "Signup", path: ROUTES.SIGNUP },
+  { label: "Dashboard", path: ROUTES.DASHBOARD },
+  { label: "AI chat", path: ROUTES.CHAT },
+  { label: "Create Trip", path: ROUTES.CREATE_TRIP },
 ];
 
 export default function Navbar() {
@@ -17,7 +20,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           to={ROUTES.HOME}
-          className="text-lg font-bold text-white sm:text-xl"
+          className="text-lg font-bold text-blue-500 sm:text-xl"
         >
           Smart Travel Planner
         </Link>
@@ -30,8 +33,8 @@ export default function Navbar() {
               to={item.path}
               className={({ isActive }) =>
                 isActive
-                  ? "font-semibold text-white"
-                  : "text-white/80 transition-colors hover:text-white"
+                  ? "font-semibold text-foreground"
+                  : "text-muted-foreground/80 transition-colors hover:text-blue-500"
               }
             >
               {item.label}
@@ -58,9 +61,7 @@ export default function Navbar() {
                     key={item.path}
                     to={item.path}
                     className={({ isActive }) =>
-                      isActive
-                        ? "font-semibold"
-                        : "text-muted-foreground"
+                      isActive ? "font-semibold" : "text-muted-foreground"
                     }
                   >
                     {item.label}
