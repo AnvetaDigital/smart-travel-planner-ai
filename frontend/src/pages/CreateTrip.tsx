@@ -5,6 +5,7 @@ import { tripSchema, type TripFormData } from "@/schemas/tripSchema";
 import { BUDGET_TYPES, INTEREST_OPTIONS, TRIP_TYPES } from "@/types/trip";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { tripService } from "@/services/tripService";
 
 export default function CreateTrip() {
   const {
@@ -54,12 +55,20 @@ export default function CreateTrip() {
     return diffDays;
   })();
 
-  const onSubmit = (data: TripFormData) => {
-    console.log("Trip Form Data:", data);
-    navigate("/trip-summary", {
-      state: data,
-    })
-  };
+  const onSubmit = async (
+    data: TripFormData
+  ) => {
+    try {
+      const response = await tripService.generateTrip(data);
+      console.log("Backend Response:", response);
+
+      navigate("/trip-summary", {
+        state: response,
+      });
+    }catch(error){
+      console.error(error);
+    }
+  }
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
