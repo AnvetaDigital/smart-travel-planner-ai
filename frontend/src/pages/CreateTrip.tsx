@@ -55,9 +55,7 @@ export default function CreateTrip() {
     return diffDays;
   })();
 
-  const onSubmit = async (
-    data: TripFormData
-  ) => {
+  const onSubmit = async (data: TripFormData) => {
     try {
       const response = await tripService.generateTrip(data);
       console.log("Backend Response:", response);
@@ -65,13 +63,13 @@ export default function CreateTrip() {
       navigate("/trip-summary", {
         state: response,
       });
-    }catch(error){
+    } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10">
+    <div className="mx-auto max-w-4xl px-4 py-20">
       <div className="mb-10">
         <h1 className="text-3xl font-bold">Create Your Trip</h1>
 
@@ -226,8 +224,7 @@ export default function CreateTrip() {
                 {tripDuration > 1 ? "s" : ""}
               </p>
             </div>
-          )
-          }
+          )}
         </div>
 
         {/* Interests */}
