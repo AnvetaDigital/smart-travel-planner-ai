@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Map, MessageCircle, CloudSun } from "lucide-react";
-import travelImage from "@/assets/images/plane2.jpg";
+import homePage from "@/assets/images/HomePage.jpg";
 import FlyingPlane from "@/components/animations/FlyingPlane";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/constants/routes";
@@ -32,9 +32,9 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-125">
+      <section className="relative md:h-[80vh] lg:h-screen">
         <img
-          src={travelImage}
+          src={homePage}
           alt="Travel destination"
           className="absolute inset-0 h-full w-full object-cover"
         />
