@@ -55,10 +55,6 @@ Rules:
 
         itinerary = GeminiService.generate_itinerary(prompt)
 
-        print("\n===== GEMINI RESPONSE =====")
-        print(itinerary)
-        print("===========================\n")
-
         try:
             cleaned_response = (
                 itinerary.replace("```json", "")
