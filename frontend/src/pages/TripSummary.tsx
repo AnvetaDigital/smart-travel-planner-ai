@@ -1,80 +1,86 @@
-import { useLocation, Navigate } from "react-router-dom";
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import type { TripFormData } from "@/types/tripForm";
+import { Navigate, useLocation } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { GenerateTripResponse } from "@/types/itinerary";
+
 
 export default function TripSummary() {
     const location = useLocation();
 
-    const trip = location.state as TripFormData | undefined;
+  const trip = location.state as GenerateTripResponse | undefined;
 
     if (!trip) {
         return <Navigate to="/trips/create" replace />;
     }
 
-    return (
-        <div className="mx-auto max-w-5xl px-4 py-10">
-            <h1 className="mb-8 text-3xl font-bold">
-                Trip Summary
-            </h1>
+  return (
+    <div className="mx-auto max-w-6xl px-4 py-10">
+      <h1 className="mb-8 text-3xl font-bold">
+        AI Travel Plan
+      </h1>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>
-                        {trip.destination}
-                    </CardTitle>
-                </CardHeader>
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>
+            {trip.destination}
+          </CardTitle>
+        </CardHeader>
 
-                <CardContent className="space-y-4">
-                    <div>
-                        <strong>Budget:</strong> ₹{trip.budget}
-                    </div>
+        <CardContent>
+          <p>{trip.itinerary.tripOverview}</p>
+        </CardContent>
+      </Card>
 
-                    <div>
-                        <strong>Budget Type:</strong> {trip.budgetType}
-                    </div>
+      <div className="space-y-6">
+        {trip.itinerary.dayWisePlan.map((day) => (
+          <Card key={day.day}>
+            <CardHeader>
+              <CardTitle>
+                Day {day.day}: {day.title}
+              </CardTitle>
+            </CardHeader>
 
-                    <div>
-                        <strong>Travelers:</strong> {trip.travelers}
-                    </div>
+            <CardContent>
+              <ul className="list-disc space-y-2 pl-5">
+                {day.activities.map((activity, index) => (
+                  <li key={index}>
+                    {activity}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
 
-                    <div>
-                        <strong>Trip Type:</strong> {trip.tripType}
-                    </div>
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle>
+            Travel Tips
+          </CardTitle>
+        </CardHeader>
 
-                    <div>
-                        <strong>Start Date:</strong> {trip.startDate}
-                    </div>
+        <CardContent>
+          <ul className="list-disc space-y-2 pl-5">
+            {trip.itinerary.travelTips.map((tip, index) => (
+              <li key={index}>
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
 
-                    <div>
-                        <strong>End Date:</strong> {trip.endDate}
-                    </div>
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle>
+            Estimated Budget
+          </CardTitle>
+        </CardHeader>
 
-                    <div>
-                        <strong>Interests:</strong>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                            {trip.interests.map((interest) => (
-                                <span
-                                    key={interest}
-                                    className="rounded-full bg-slate-100 px-3 py-1 text-sm"
-                                >
-                                    {interest}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                    <Button className="mt-6">
-                        Generate AI Itinerary
-                    </Button>
-
-                </CardContent>
-            </Card>
-        </div>
-    );
+        <CardContent>
+          <p>{trip.itinerary.estimatedBudget}</p>
+        </CardContent>
+      </Card>
+    </div>
+  );
 }
