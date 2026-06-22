@@ -15,13 +15,14 @@ const navItems = [
 
 export default function Navbar() {
   return (
-    <nav className="absolute left-0 right-0 top-0 z-50">
+    <nav className="sticky left-0 right-0 top-0 z-50 bg-blue-900 text-white shadow-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link
           to={ROUTES.HOME}
-          className="text-lg font-bold text-blue-500 sm:text-xl"
-        >
+          className="text-lg font-bold text-white sm:text-xl"
+           style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
+          >
           Smart Travel Planner
         </Link>
 
@@ -33,8 +34,8 @@ export default function Navbar() {
               to={item.path}
               className={({ isActive }) =>
                 isActive
-                  ? "font-semibold text-foreground"
-                  : "text-muted-foreground/80 transition-colors hover:text-blue-500"
+                  ? "font-semibold text-white"
+                  : "text-foreground transition-colors hover:text-blue-500"
               }
             >
               {item.label}
