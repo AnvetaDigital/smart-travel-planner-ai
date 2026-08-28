@@ -5,4 +5,5 @@ export const ROUTES = {
   DASHBOARD: "/dashboard",
   CREATE_TRIP: "/trips/create",
   CHAT: "/chat",
+  TRIP_SUMMARY: "/trip-summary",
 } as const;
