@@ -1,18 +1,20 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+
 import HomePage from "./HomePage";
+import { renderWithProviders } from "@/test/utils";
 
 describe("HomePage", () => {
   test("renders hero heading", () => {
-    render(<HomePage />);
+    renderWithProviders(<HomePage />);
 
     expect(screen.getByText(/Plan Smarter Trips With AI/i)).toBeInTheDocument();
   });
 
-  test("renders feature section heading", ()=>{
-    render(<HomePage/>);
+  test("renders feature section heading", () => {
+    renderWithProviders(<HomePage />);
 
     expect(
-      screen.getByText(/Why Choose Smart Travel Planner/i)
+      screen.getByText(/Why Choose Smart Travel Planner/i),
     ).toBeInTheDocument();
-  })
+  });
 });
